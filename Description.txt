@@ -1,0 +1,61 @@
+Real-Time Event Booking System with Load Handling
+
+This project is a web-based event booking platform designed to handle high-traffic, high-concurrency scenarios such as concert or sports ticket releases. Users can browse events, view live seat availability, and book tickets in real time, while the system ensures that no seat is double-booked, even when many people are trying to buy at the same time.
+The core focus is not just basic CRUD, but correctness and performance under load. The system explores techniques such as optimistic and pessimistic locking, distributed locks (e.g. Redis), rate limiting, background workers, and caching to keep the application responsive and consistent when thousands of users are active.
+
+Key Goals
+
+Provide a real-time seat map that updates as users reserve and purchase tickets.
+Prevent overbooking through robust concurrency control.
+Simulate high load (e.g. flash sale) and measure how the system behaves.
+Explore scaling strategies: horizontal scaling of stateless services, queue-based processing, and caching.
+Deploy the system in a production-like environment with CI/CD, monitoring, and logging.
+
+Core Features (initial version)
+
+User registration and login.
+Event listing page with basic search/filter.
+Event detail page with available seats.
+Real-time reservation flow (hold → pay → confirm).
+Admin interface to create/manage events and seating layouts.
+
+
+Simple Initial Tech Stack
+
+
+Frontend
+
+React + TypeScript (via Vite)
+
+Type safety + super fast dev.
+
+React Router
+
+For /events, /events/:id, /admin.
+
+Tailwind CSS
+
+Fast, consistent styling without design hell.
+
+Backend
+
+Node.js + TypeScript + Express
+Lightweight, easy to control structure yourself.
+Prisma ORM + PostgreSQL
+Easy schema evolution, type-safe DB access.
+Zod (optional but nice)
+Validate request bodies & responses.
+Data & Caching
+PostgreSQL
+Main source of truth (users, events, seats, bookings).
+Redis 
+Later for distributed locks / caching / rate limiting.
+Dev & Infra
+Docker + Docker Compose
+One command to bring up backend + db + (later) redis.
+pnpm or npm (your choice)
+Vitest / Jest (basic unit tests)
+ESLint + Prettier (keep things clean)
+
+We’ll start monolith-ish (backend + DB + frontend), then later introduce Redis, load testing, and more complex architecture.
+
